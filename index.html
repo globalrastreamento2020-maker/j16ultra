@@ -58,17 +58,130 @@
         <a href="https://globalrastreamento2020-maker.github.io/manual/" target="_blank">Manual Online</a>
       </nav>
     </header>
+
     <div class="grid">
       <main class="card">
-        <!-- Conteúdo omitido aqui por limitação de espaço, mas o HTML inclui todas as seções (Carro, Moto, Manutenção, Avançados, Efeito Estrela, Servidor & APN) -->
+
+        <!-- CARRO NORMAL -->
+        <section>
+          <div class="section-title"><h2>Carro — Perfil Normal</h2><span class="muted">Configuração padrão</span></div>
+          <div class="list">
+            <div class="cmd-row"><pre><code>TIMER,30,300#</code></pre><button class="btn copy" data-clipboard="TIMER,30,300#">Copiar</button><div class="muted small">Envia posição a cada 30s ligado / 5min desligado</div></div>
+            <div class="cmd-row"><pre><code>HBT,180,180#</code></pre><button class="btn copy" data-clipboard="HBT,180,180#">Copiar</button><div class="muted small">Heartbeat para manter conexão</div></div>
+            <div class="cmd-row"><pre><code>SENDS,5#</code></pre><button class="btn copy" data-clipboard="SENDS,5#">Copiar</button><div class="muted small">GPS ativo a cada 5 min com ignição OFF</div></div>
+          </div>
+        </section>
+
+        <!-- CARRO PERFIS -->
+        <section>
+          <div class="section-title"><h2>Carro — Perfis Econômicos</h2><span class="muted">Economia de dados</span></div>
+          <h3>Perfil 1 — Econômico</h3>
+          <div class="list">
+            <div class="cmd-row"><pre><code>TIMER,60,600#</code></pre><button class="btn copy" data-clipboard="TIMER,60,600#">Copiar</button><div class="muted small">1 min ligado / 10 min desligado</div></div>
+            <div class="cmd-row"><pre><code>HBT,300,300#</code></pre><button class="btn copy" data-clipboard="HBT,300,300#">Copiar</button><div class="muted small">Heartbeat mais espaçado</div></div>
+            <div class="cmd-row"><pre><code>SENDS,5#</code></pre><button class="btn copy" data-clipboard="SENDS,5#">Copiar</button><div class="muted small">GPS ativo a cada 5 min</div></div>
+          </div>
+          <h3>Perfil 2 — Intermediário</h3>
+          <div class="list">
+            <div class="cmd-row"><pre><code>TIMER,60,1200#</code></pre><button class="btn copy" data-clipboard="TIMER,60,1200#">Copiar</button><div class="muted small">1 min ligado / 20 min desligado</div></div>
+            <div class="cmd-row"><pre><code>HBT,600,600#</code></pre><button class="btn copy" data-clipboard="HBT,600,600#">Copiar</button><div class="muted small">Heartbeat mais econômico</div></div>
+            <div class="cmd-row"><pre><code>SENDS,10#</code></pre><button class="btn copy" data-clipboard="SENDS,10#">Copiar</button><div class="muted small">GPS ativo a cada 10 min</div></div>
+          </div>
+          <h3>Perfil 3 — Super Econômico</h3>
+          <div class="list">
+            <div class="cmd-row"><pre><code>TIMER,120,1800#</code></pre><button class="btn copy" data-clipboard="TIMER,120,1800#">Copiar</button><div class="muted small">2 min ligado / 30 min desligado</div></div>
+            <div class="cmd-row"><pre><code>HBT,900,900#</code></pre><button class="btn copy" data-clipboard="HBT,900,900#">Copiar</button><div class="muted small">Heartbeat mínimo</div></div>
+            <div class="cmd-row"><pre><code>SENDS,20#</code></pre><button class="btn copy" data-clipboard="SENDS,20#">Copiar</button><div class="muted small">GPS ativo a cada 20 min</div></div>
+          </div>
+        </section>
+
+        <!-- MOTO -->
+        <section>
+          <div class="section-title"><h2>Moto — Economia de Bateria</h2><span class="muted">Perfis sugeridos</span></div>
+          <div class="list">
+            <div class="cmd-row"><pre><code>TIMER,60,1800#</code></pre><button class="btn copy" data-clipboard="TIMER,60,1800#">Copiar</button><div class="muted small">1 min ligado / 30 min desligado</div></div>
+            <div class="cmd-row"><pre><code>HBT,600,600#</code></pre><button class="btn copy" data-clipboard="HBT,600,600#">Copiar</button><div class="muted small">Heartbeat leve</div></div>
+            <div class="cmd-row"><pre><code>SENDS,1#</code></pre><button class="btn copy" data-clipboard="SENDS,1#">Copiar</button><div class="muted small">GPS ativo a cada 1 min</div></div>
+            <div class="cmd-row"><pre><code>SZCS#SLPDISCONNECT=1</code></pre><button class="btn copy" data-clipboard="SZCS#SLPDISCONNECT=1">Copiar</button><div class="muted small">Dormência desconecta da plataforma, SMS ativo</div></div>
+          </div>
+        </section>
+
+        <!-- MANUTENÇÃO -->
+        <section>
+          <div class="section-title"><h2>Manutenção diária</h2><span class="muted">Comandos úteis</span></div>
+          <div class="list">
+            <div class="cmd-row"><pre><code>WHERE#</code></pre><button class="btn copy" data-clipboard="WHERE#">Copiar</button><div class="muted small">Última posição (coordenadas)</div></div>
+            <div class="cmd-row"><pre><code>666#</code></pre><button class="btn copy" data-clipboard="666#">Copiar</button><div class="muted small">Link Google Maps</div></div>
+            <div class="cmd-row"><pre><code>STATUS#</code></pre><button class="btn copy" data-clipboard="STATUS#">Copiar</button><div class="muted small">Status bateria, sinal e ACC</div></div>
+            <div class="cmd-row"><pre><code>RESET#</code></pre><button class="btn copy" data-clipboard="RESET#">Copiar</button><div class="muted small">Reinicia o rastreador</div></div>
+          </div>
+        </section>
+
+        <!-- AVANÇADOS -->
+        <section>
+          <div class="section-title"><h2>Comandos Avançados</h2><span class="muted">Ajustes finos</span></div>
+          <div class="list">
+            <div class="cmd-row"><pre><code>SZCS#SLPDISCONNECT=1</code></pre><button class="btn copy" data-clipboard="SZCS#SLPDISCONNECT=1">Copiar</button><div class="muted small">Modo de hibernação: 0 mantém, 1 SMS ativo, 2 desconecta total</div></div>
+            <div class="cmd-row"><pre><code>SENALM,ON,2#</code></pre><button class="btn copy" data-clipboard="SENALM,ON,2#">Copiar</button><div class="muted small">Ativa alarme de vibração (2 = GPRS+SMS+CALL)</div></div>
+            <div class="cmd-row"><pre><code>SENALM,OFF#</code></pre><button class="btn copy" data-clipboard="SENALM,OFF#">Copiar</button><div class="muted small">Desativa sensor de vibração</div></div>
+            <div class="cmd-row"><pre><code>RESET#</code></pre><button class="btn copy" data-clipboard="RESET#">Copiar</button><div class="muted small">Reinício rápido do rastreador</div></div>
+            <div class="cmd-row"><pre><code>SENDS,10#</code></pre><button class="btn copy" data-clipboard="SENDS,10#">Copiar</button><div class="muted small">Economia de GPS: liga GPS a cada 10 min</div></div>
+            <div class="cmd-row"><pre><code>SZCS#ANTIJAMMER=1</code></pre><button class="btn copy" data-clipboard="SZCS#ANTIJAMMER=1">Copiar</button><div class="muted small">Ativa modo anti-jammer</div></div>
+            <div class="cmd-row"><pre><code>LED,OFF#</code></pre><button class="btn copy" data-clipboard="LED,OFF#">Copiar</button><div class="muted small">Apaga LEDs do rastreador</div></div>
+            <div class="cmd-row"><pre><code>LED,ON#</code></pre><button class="btn copy" data-clipboard="LED,ON#">Copiar</button><div class="muted small">Religa LEDs</div></div>
+            <div class="cmd-row"><pre><code>SZCS#ACC_MODE=1</code></pre><button class="btn copy" data-clipboard="SZCS#ACC_MODE=1">Copiar</button><div class="muted small">Habilita ignição virtual (ACC por sensor)</div></div>
+          </div>
+        </section>
+
+        <!-- EFEITO ESTRELA -->
+        <section>
+          <div class="section-title"><h2>Parar efeito estrela</h2><span class="muted">Reset servidor/APN</span></div>
+          <div class="list">
+            <div class="cmd-row"><pre><code>SERVER,0,0.0.0.0,0,0#</code></pre><button class="btn copy" data-clipboard="SERVER,0,0.0.0.0,0,0#">Copiar</button><div class="muted small">Apaga servidor antigo</div></div>
+            <div class="cmd-row"><pre><code>APN,,,#</code></pre><button class="btn copy" data-clipboard="APN,,,#">Copiar</button><div class="muted small">Apaga APN configurada</div></div>
+          </div>
+        </section>
+
+        <!-- SERVIDOR & APN -->
+        <section>
+          <div class="section-title"><h2>Servidor & APN</h2><span class="muted">Configuração inicial</span></div>
+          <div class="list">
+            <div class="cmd-row"><pre><code>SERVER,0,5.78.41.102,5023,0#</code></pre><button class="btn copy" data-clipboard="SERVER,0,5.78.41.102,5023,0#">Copiar</button><div class="muted small">Servidor Global Rastreamento</div></div>
+            <div class="cmd-row"><pre><code>APN,virtueyes.com.br,virtu,virtu#</code></pre><button class="btn copy" data-clipboard="APN,virtueyes.com.br,virtu,virtu#">Copiar</button><div class="muted small">APN Virtueyes</div></div>
+            <div class="cmd-row"><pre><code>APN,ss.br,ss,ss#</code></pre><button class="btn copy" data-clipboard="APN,ss.br,ss,ss#">Copiar</button><div class="muted small">APN SS</div></div>
+            <div class="cmd-row"><pre><code>APN,claro.com.br,claro,claro#</code></pre><button class="btn copy" data-clipboard="APN,claro.com.br,claro,claro#">Copiar</button><div class="muted small">APN Claro</div></div>
+            <div class="cmd-row"><pre><code>APN,tim.br,tim,tim#</code></pre><button class="btn copy" data-clipboard="APN,tim.br,tim,tim#">Copiar</button><div class="muted small">APN TIM</div></div>
+            <div class="cmd-row"><pre><code>APN,oi.com.br,oi,oi#</code></pre><button class="btn copy" data-clipboard="APN,oi.com.br,oi,oi#">Copiar</button><div class="muted small">APN Oi</div></div>
+            <div class="cmd-row"><pre><code>APN,vivo.com.br,vivo,vivo#</code></pre><button class="btn copy" data-clipboard="APN,vivo.com.br,vivo,vivo#">Copiar</button><div class="muted small">APN Vivo</div></div>
+          </div>
+        </section>
+
       </main>
+
+      <aside class="right">
+        <div class="card">
+          <div class="section-title"><h2>Busca</h2><span class="muted">Filtrar comandos</span></div>
+          <div class="search"><input class="input" id="filter" placeholder="Buscar comando..."/></div>
+          <div style="height:20px"></div>
+          <div class="section-title"><h2>Dicas</h2><span class="muted">Boas práticas</span></div>
+          <ul class="muted small">
+            <li>Teste primeiro em 1 veículo antes de aplicar em frota.</li>
+            <li>Use perfis econômicos em motos para preservar bateria.</li>
+            <li>Se notar conexões duplicadas, use a seção "Efeito Estrela".</li>
+            <li>Sempre cadastre números CENTER para alertas.</li>
+          </ul>
+        </div>
+      </aside>
     </div>
+
     <footer>
       <div>© 2025 <strong>Global Rastreamento</strong>. Todos os direitos reservados.</div>
       <div><a href="https://privacy.globalrastreamento.net.br/" target="_blank">Política de Privacidade</a></div>
     </footer>
   </div>
+
   <script>
+    // Copiar comandos
     document.querySelectorAll('.btn.copy').forEach(btn=>{
       btn.addEventListener('click',()=>{
         const txt = btn.getAttribute('data-clipboard') || btn.parentElement.querySelector('code').innerText.trim();
@@ -78,6 +191,7 @@
         });
       });
     });
+    // Filtro de busca
     document.getElementById('filter').addEventListener('input',e=>{
       const q = e.target.value.toLowerCase();
       document.querySelectorAll('pre code').forEach(el=>{
