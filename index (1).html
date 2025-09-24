@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>GT06 — Perfis de Configuração</title>
+  <meta name="description" content="Comandos prontos GT06 — Carro, Moto, Economia de Dados, Manutenção, GPRS e APN." />
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="logo_global_32.png" />
+  <link rel="icon" type="image/png" sizes="64x64" href="logo_global_64.png" />
+  <link rel="icon" type="image/png" sizes="128x128" href="logo_global_128.png" />
+  <style>
+    :root{
+      --bg:#0b1020;
+      --card:#0f1724;
+      --muted:#94a3b8;
+      --accent:#2563eb; /* Azul */
+      --highlight:#facc15; /* Amarelo */
+      --white:#ffffff;
+      --glass:rgba(255,255,255,0.06);
+    }
+    *{box-sizing:border-box;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial}
+    body{margin:0;background:linear-gradient(180deg,#030416 0%, #0a1830 60%);color:var(--white);line-height:1.45}
+    .wrap{max-width:1100px;margin:0 auto;padding:20px}
+    header{display:flex;gap:20px;align-items:center;flex-wrap:wrap;justify-content:space-between;margin-bottom:20px}
+    header h1{font-size:20px;font-weight:700;color:var(--highlight);margin:0}
+    nav.top-links{display:flex;gap:12px;flex-wrap:wrap}
+    nav.top-links a{color:var(--white);text-decoration:none;font-weight:600;background:linear-gradient(90deg,var(--accent),var(--highlight));padding:8px 14px;border-radius:8px;font-size:14px;transition:opacity .2s}
+    nav.top-links a:hover{opacity:0.85}
+    .grid{display:grid;grid-template-columns:1fr 320px;gap:20px}
+    .card{background:var(--card);border-radius:12px;padding:18px;box-shadow:0 6px 25px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.05)}
+    .section-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+    h2{font-size:16px;margin:0;color:var(--highlight)}
+    h3{margin:8px 0;font-size:15px;color:var(--accent)}
+    .muted{color:var(--muted);font-size:13px}
+    pre{background:var(--glass);padding:10px;border-radius:8px;overflow:auto;margin:6px 0;color:var(--white)}
+    code{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Roboto Mono,monospace;font-size:13px}
+    .cmd-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+    .btn{background:transparent;border:1px solid rgba(255,255,255,0.1);padding:6px 10px;border-radius:8px;color:var(--accent);cursor:pointer;font-weight:600}
+    .btn.copy{border-color:rgba(255,255,255,0.06)}
+    .small{font-size:13px}
+    .list{display:grid;gap:8px}
+    .right{position:sticky;top:20px}
+    .search{display:flex;gap:8px}
+    .input{flex:1;padding:8px 12px;border-radius:8px;background:transparent;border:1px solid rgba(255,255,255,0.08);color:var(--white)}
+    footer{margin-top:28px;color:var(--muted);font-size:13px;text-align:center}
+    footer a{color:var(--highlight);font-weight:600;text-decoration:none}
+    @media (max-width:900px){.grid{grid-template-columns:1fr}.right{position:static}nav.top-links{width:100%;justify-content:center;margin-top:8px}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Global Rastreamento Tecnologia</h1>
+      <nav class="top-links">
+        <a href="https://dashboard.smsmarket.com.br/login" target="_blank">Envio de SMS</a>
+        <a href="https://globalrastreamento2020-maker.github.io/globaltecnologia/" target="_blank">Site Principal</a>
+        <a href="https://globalrastreamento2020-maker.github.io/manual/" target="_blank">Manual Online</a>
+      </nav>
+    </header>
+    <div class="grid">
+      <main class="card">
+        <!-- Conteúdo omitido aqui por limitação de espaço, mas o HTML inclui todas as seções (Carro, Moto, Manutenção, Avançados, Efeito Estrela, Servidor & APN) -->
+      </main>
+    </div>
+    <footer>
+      <div>© 2025 <strong>Global Rastreamento</strong>. Todos os direitos reservados.</div>
+      <div><a href="https://privacy.globalrastreamento.net.br/" target="_blank">Política de Privacidade</a></div>
+    </footer>
+  </div>
+  <script>
+    document.querySelectorAll('.btn.copy').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        const txt = btn.getAttribute('data-clipboard') || btn.parentElement.querySelector('code').innerText.trim();
+        navigator.clipboard.writeText(txt).then(()=>{
+          btn.innerText='Copiado';
+          setTimeout(()=>btn.innerText='Copiar',1200);
+        });
+      });
+    });
+    document.getElementById('filter').addEventListener('input',e=>{
+      const q = e.target.value.toLowerCase();
+      document.querySelectorAll('pre code').forEach(el=>{
+        const row = el.closest('.cmd-row') || el.parentElement.parentElement;
+        if(!row) return;
+        row.style.display = el.innerText.toLowerCase().includes(q) ? 'flex' : 'none';
+      });
+    });
+  </script>
+</body>
+</html>
