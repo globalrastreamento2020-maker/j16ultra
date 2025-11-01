@@ -1,221 +1,204 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>GT06 — Perfis de Configuração</title>
-  <meta name="description" content="Comandos prontos GT06 — Carro, Moto, Economia de Dados, Manutenção, GPRS e APN." />
-  <!-- Favicons -->
-  <link rel="icon" type="image/png" sizes="32x32" href="logo_global_32.png" />
-  <link rel="icon" type="image/png" sizes="64x64" href="logo_global_64.png" />
-  <link rel="icon" type="image/png" sizes="128x128" href="logo_global_128.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contrato de Locação de Veículo – Motocicleta (ABNT v5)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <style>
-    :root{
-      --bg:#0b1020;
-      --card:#0f1724;
-      --muted:#94a3b8;
-      --accent:#2563eb; /* Azul */
-      --highlight:#facc15; /* Amarelo */
-      --white:#ffffff;
-      --glass:rgba(255,255,255,0.06);
+    body {
+      background: #f5f5f5;
+      font-family: 'Times New Roman', Times, serif;
+      color: #111;
     }
-    *{box-sizing:border-box;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial}
-    body{margin:0;background:linear-gradient(180deg,#030416 0%, #0a1830 60%);color:var(--white);line-height:1.45}
-    .wrap{max-width:1100px;margin:0 auto;padding:20px}
-    header{display:flex;gap:20px;align-items:center;flex-wrap:wrap;justify-content:space-between;margin-bottom:20px}
-    header h1{font-size:20px;font-weight:700;color:var(--highlight);margin:0}
-    nav.top-links{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-    nav.top-links a{color:var(--white);text-decoration:none;font-weight:600;background:linear-gradient(90deg,var(--accent),var(--highlight));padding:8px 12px;border-radius:8px;font-size:13px;transition:opacity .2s;white-space:nowrap}
-    nav.top-links a.secondary{background:transparent;border:1px solid rgba(255,255,255,0.05);color:var(--muted);padding:6px 10px}
-    nav.top-links a:hover{opacity:0.87}
-    .grid{display:grid;grid-template-columns:1fr 320px;gap:20px}
-    .card{background:var(--card);border-radius:12px;padding:18px;box-shadow:0 6px 25px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.05)}
-    .section-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
-    h2{font-size:16px;margin:0;color:var(--highlight)}
-    h3{margin:8px 0;font-size:15px;color:var(--accent)}
-    .muted{color:var(--muted);font-size:13px}
-    pre{background:var(--glass);padding:10px;border-radius:8px;overflow:auto;margin:6px 0;color:var(--white)}
-    code{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Roboto Mono,monospace;font-size:13px}
-    .cmd-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-    .btn{background:transparent;border:1px solid rgba(255,255,255,0.1);padding:6px 10px;border-radius:8px;color:var(--accent);cursor:pointer;font-weight:600}
-    .btn.copy{border-color:rgba(255,255,255,0.06)}
-    .btn.small{padding:6px 8px;font-size:13px}
-    .small{font-size:13px}
-    .list{display:grid;gap:8px}
-    .right{position:sticky;top:20px}
-    .search{display:flex;gap:8px}
-    .input{flex:1;padding:8px 12px;border-radius:8px;background:transparent;border:1px solid rgba(255,255,255,0.08);color:var(--white)}
-    footer{margin-top:28px;color:var(--muted);font-size:13px;text-align:center}
-    footer a{color:var(--highlight);font-weight:600;text-decoration:none}
-    @media (max-width:900px){.grid{grid-template-columns:1fr}.right{position:static}nav.top-links{width:100%;justify-content:center;margin-top:8px}}
+    .sheet {
+      width: 100%;
+      max-width: 900px;
+      margin: 15px auto;
+      background: #fff;
+      padding: 10mm 25mm 20mm 25mm;
+      box-shadow: 0 0 10px rgba(0,0,0,.12);
+      position: relative;
+      overflow: hidden;
+      border-radius: 4px;
+    }
+    @media print {
+      body { background: #fff; }
+      .no-print { display: none !important; }
+      .sheet { box-shadow: none; margin: 0; }
+    }
+    .btn-pdf {
+      background: #ff6a00;
+      color: #fff;
+      font-weight: 600;
+      border-radius: .5rem;
+      padding: .6rem 1rem;
+      transition: .25s;
+    }
+    .btn-pdf:hover { background: #d45500; }
+    .watermark {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-45deg);
+      font-size: 64px;
+      font-weight: 700;
+      color: rgba(0, 0, 0, .08);
+      white-space: nowrap;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .footer-note {
+      position: absolute;
+      left: 0; right: 0;
+      bottom: 8mm;
+      text-align: center;
+      font-size: 10px;
+      color: #555;
+    }
+    .contrato {
+      position: relative;
+      z-index: 1;
+      font-size: 16px;
+      line-height: 1.5;
+      text-align: justify;
+    }
+    .contrato h1 {
+      text-align: center;
+      font-weight: 700;
+      font-size: 18px;
+      margin: 0 0 10px 0;
+      letter-spacing: .5px;
+    }
+    .contrato h3 {
+      font-weight: 700;
+      font-size: 16px;
+      margin: 10px 0 4px 0;
+    }
+    .contrato p { margin: 0 0 6px 0; }
+    .contrato ol { margin: 0 0 6px 18px; }
+    .assinaturas {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      margin-top: 35px;
+    }
+    .assinaturas div {
+      border-top: 1px dashed #777;
+      padding-top: 8px;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <h1>Global Rastreamento Tecnologia</h1>
-      <nav class="top-links">
-        <a href="https://dashboard.smsmarket.com.br/login" target="_blank">Envio de SMS</a>
-        <a href="https://globalrastreamento2020-maker.github.io/globaltecnologia/" target="_blank">Site Principal</a>
-        <a href="https://globalrastreamento2020-maker.github.io/manual/" target="_blank">Manual Online</a>
-        <!-- Novos botões solicitados -->
-        <a href="https://veye.com.br/login" target="_blank">Virtueyes</a>
-        <a href="https://datatem.brcaptura.com.br/brcportal/pages/login/login.jsf" target="_blank">Datatem</a>
-        <a href="https://smartmanager2.smartsim.com.br/management/dashboards" target="_blank">Smart Manager</a>
-        <a href="https://www.nfse.gov.br/EmissorNacional/Login" target="_blank">NFS-e</a>
-        <a href="https://www8.receita.fazenda.gov.br/SimplesNacional/Aplicacoes/ATSPO/pgmei.app/Identificacao" target="_blank">DAS NEI</a>
-        <a href="https://plataforma.alltracker.tec.br/tracker/localizacaoAtual.jsf" target="_blank">AllTracker ARA</a>
-      </nav>
-    </header>
+  <header class="no-print bg-gradient-to-r from-[#ff6a00] to-black text-white p-3 text-center font-bold">
+    Gerador de Contrato de Locação de Motocicleta – ABNT v5
+    <button id="btnPdfTop" class="btn-pdf ml-3 text-sm">Gerar PDF</button>
+  </header>
 
-    <div class="grid">
-      <main class="card">
+  <main class="max-w-4xl mx-auto p-4">
+    <section class="bg-white p-4 rounded-lg shadow-md mb-5 no-print">
+      <h2 class="text-lg font-bold mb-2">Preencha os dados</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <label>Locador <input data-bind="locador_nome" class="mt-1 w-full border rounded-lg px-3 py-2" /></label>
+        <label>CNPJ/CPF <input data-bind="locador_doc" class="mt-1 w-full border rounded-lg px-3 py-2" /></label>
+        <label class="md:col-span-2">Endereço <input data-bind="locador_end" class="mt-1 w-full border rounded-lg px-3 py-2" /></label>
+        <label class="md:col-span-2">Representante <input data-bind="locador_rep" class="mt-1 w-full border rounded-lg px-3 py-2" /></label>
 
-        <!-- CARRO NORMAL -->
-        <section>
-          <div class="section-title"><h2>Carro — Perfil Normal</h2><span class="muted">Configuração padrão</span></div>
-          <div class="list">
-            <div class="cmd-row"><pre><code>TIMER,30,300#</code></pre><button class="btn copy" data-clipboard="TIMER,30,300#">Copiar</button><div class="muted small">Envia posição a cada 30s ligado / 5min desligado</div></div>
-            <div class="cmd-row"><pre><code>HBT,180,180#</code></pre><button class="btn copy" data-clipboard="HBT,180,180#">Copiar</button><div class="muted small">Heartbeat para manter conexão</div></div>
-            <div class="cmd-row"><pre><code>SENDS,5#</code></pre><button class="btn copy" data-clipboard="SENDS,5#">Copiar</button><div class="muted small">GPS ativo a cada 5 min com ignição OFF</div></div>
+        <label class="md:col-span-2 mt-2">Locatário <input data-bind="locatario_nome" class="mt-1 w-full border rounded-lg px-3 py-2" /></label>
+        <label>CPF <input data-bind="locatario_cpf" class="mt-1 w-full border rounded-lg px-3 py-2" /></label>
+        <label>RG <input data-bind="locatario_rg" class="mt-1 w-full border rounded-lg px-3 py-2" /></label>
+        <label>CNH <input data-bind="locatario_cnh" class="mt-1 w-full border rounded-lg px-3 py-2" /></label>
+        <label class="md:col-span-2">Endereço <input data-bind="locatario_end" class="mt-1 w-full border rounded-lg px-3 py-2" /></label>
+
+        <label class="mt-2">Marca <input data-bind="moto_marca" class="mt-1 w-full border rounded-lg px-3 py-2" /></label>
+        <label class="mt-2">Modelo <input data-bind="moto_modelo" class="mt-1 w-full border rounded-lg px-3 py-2" /></label>
+        <label class="mt-2">Placa <input data-bind="moto_placa" class="mt-1 w-full border rounded-lg px-3 py-2" /></label>
+        <label class="mt-2">Cor <input data-bind="moto_cor" class="mt-1 w-full border rounded-lg px-3 py-2" /></label>
+        <label class="mt-2">Ano <input data-bind="moto_ano" class="mt-1 w-full border rounded-lg px-3 py-2" /></label>
+        <label class="mt-2">RENAVAM <input data-bind="moto_renavam" class="mt-1 w-full border rounded-lg px-3 py-2" /></label>
+
+        <label class="mt-2">Duração (dias) <input data-bind="duracao" class="mt-1 w-full border rounded-lg px-3 py-2" /></label>
+        <label class="mt-2">Valor do aluguel <input data-bind="valor" class="mt-1 w-full border rounded-lg px-3 py-2" /></label>
+        <label class="mt-2">Caução <input data-bind="caucao" class="mt-1 w-full border rounded-lg px-3 py-2" /></label>
+        <label class="mt-2">Limite de km <input data-bind="km_limite" class="mt-1 w-full border rounded-lg px-3 py-2" /></label>
+        <label class="mt-2">Revisão a cada <input data-bind="km_revisao" class="mt-1 w-full border rounded-lg px-3 py-2" /></label>
+        <label class="mt-2">Multa por atraso <input data-bind="multa_atraso" class="mt-1 w-full border rounded-lg px-3 py-2" /></label>
+        <label class="mt-2">Cidade/UF <input data-bind="cidade" class="mt-1 w-full border rounded-lg px-3 py-2" /></label>
+        <label class="mt-2">Data do contrato <input type="date" data-bind="data_doc" class="mt-1 w-full border rounded-lg px-3 py-2" /></label>
+      </div>
+    </section>
+
+    <section id="contrato" class="sheet">
+      <div class="watermark">USO EXCLUSIVO – LICENCIADO</div>
+      <div class="contrato">
+        <h1>CONTRATO DE LOCAÇÃO DE VEÍCULO – MOTOCICLETA</h1>
+        <p><strong>LOCADOR(A):</strong> <span data-text="locador_nome"></span>, CNPJ/CPF <span data-text="locador_doc"></span>, representado por <span data-text="locador_rep"></span>.</p>
+        <p><strong>LOCATÁRIO(A):</strong> <span data-text="locatario_nome"></span>, CPF <span data-text="locatario_cpf"></span>, RG <span data-text="locatario_rg"></span>, CNH nº <span data-text="locatario_cnh"></span>, residente em <span data-text="locatario_end"></span>.</p>
+        <h3>CLÁUSULA 1 – DO OBJETO</h3>
+        <p>Locação da motocicleta <span data-text="moto_marca"></span> <span data-text="moto_modelo"></span>, placa <span data-text="moto_placa"></span>, cor <span data-text="moto_cor"></span>, ano <span data-text="moto_ano"></span>, RENAVAM <span data-text="moto_renavam"></span>.</p>
+        <h3>CLÁUSULA 2 – DO PRAZO E VALOR</h3>
+        <p>Duração de <span data-text="duracao"></span> dias. Valor: <span data-text="valor"></span>. Caução: <span data-text="caucao"></span>.</p>
+        <h3>CLÁUSULA 3 – DAS OBRIGAÇÕES DO LOCATÁRIO</h3>
+        <ol>
+          <li>Manter o veículo abastecido e em bom estado de conservação.</li>
+          <li>Arcar com todas as multas e infrações de trânsito cometidas durante a locação.</li>
+          <li>Evitar atrasos nos pagamentos e comunicar o locador sobre qualquer imprevisto.</li>
+          <li>Responsabilizar-se por todos os danos causados ao veículo decorrentes de mau uso.</li>
+          <li>Comunicar imediatamente o locador sobre quaisquer defeitos ou incidentes.</li>
+          <li>Apresentar CNH válida e compatível com a categoria do veículo.</li>
+        </ol>
+        <h3>CLÁUSULA 4 – DA MANUTENÇÃO E REVISÃO</h3>
+        <p>As revisões preventivas são de responsabilidade do locador. Danos por mau uso ou negligência são de responsabilidade do locatário. Revisões obrigatórias a cada <span data-text="km_revisao"></span> km.</p>
+        <h3>CLÁUSULA 5 – DA DEVOLUÇÃO</h3>
+        <p>O veículo deverá ser devolvido em <strong>Paulo Afonso/BA</strong> ou local acordado, nas mesmas condições de entrega e com o mesmo nível de combustível. O atraso implicará multa de <span data-text="multa_atraso"></span> por dia.</p>
+        <h3>CLÁUSULA 6 – DO RASTREAMENTO</h3>
+        <p>O locatário autoriza o uso do rastreador somente para fins de segurança e localização, conforme Lei nº 14.967/2024.</p>
+        <h3>CLÁUSULA 7 – DAS PENALIDADES E RESCISÃO</h3>
+        <p>O descumprimento de qualquer cláusula implicará rescisão imediata deste contrato e cobrança das penalidades cabíveis.</p>
+        <h3>CLÁUSULA 8 – DO FORO</h3>
+        <p>Fica eleito o foro da comarca de <strong>Paulo Afonso/BA</strong> para dirimir quaisquer controvérsias decorrentes deste contrato.</p>
+        <p style="margin-top:10px;"><span data-text="cidade"></span>, <span data-text="data_doc_fmt"></span>.</p>
+        <div class="assinaturas">
+          <div>
+            <div>ASSINATURA DO LOCADOR(A)</div>
+            <small><span data-text="locador_nome"></span></small>
           </div>
-        </section>
-
-        <!-- CARRO PERFIS -->
-        <section>
-          <div class="section-title"><h2>Carro — Perfis Econômicos</h2><span class="muted">Economia de dados</span></div>
-          <h3>Perfil 1 — Econômico</h3>
-          <div class="list">
-            <div class="cmd-row"><pre><code>TIMER,60,600#</code></pre><button class="btn copy" data-clipboard="TIMER,60,600#">Copiar</button><div class="muted small">1 min ligado / 10 min desligado</div></div>
-            <div class="cmd-row"><pre><code>HBT,300,300#</code></pre><button class="btn copy" data-clipboard="HBT,300,300#">Copiar</button><div class="muted small">Heartbeat mais espaçado</div></div>
-            <div class="cmd-row"><pre><code>SENDS,5#</code></pre><button class="btn copy" data-clipboard="SENDS,5#">Copiar</button><div class="muted small">GPS ativo a cada 5 min</div></div>
+          <div>
+            <div>ASSINATURA DO LOCATÁRIO(A)</div>
+            <small><span data-text="locatario_nome"></span></small>
           </div>
-          <h3>Perfil 2 — Intermediário</h3>
-          <div class="list">
-            <div class="cmd-row"><pre><code>TIMER,60,1200#</code></pre><button class="btn copy" data-clipboard="TIMER,60,1200#">Copiar</button><div class="muted small">1 min ligado / 20 min desligado</div></div>
-            <div class="cmd-row"><pre><code>HBT,600,600#</code></pre><button class="btn copy" data-clipboard="HBT,600,600#">Copiar</button><div class="muted small">Heartbeat mais econômico</div></div>
-            <div class="cmd-row"><pre><code>SENDS,10#</code></pre><button class="btn copy" data-clipboard="SENDS,10#">Copiar</button><div class="muted small">GPS ativo a cada 10 min</div></div>
-          </div>
-          <h3>Perfil 3 — Super Econômico</h3>
-          <div class="list">
-            <div class="cmd-row"><pre><code>TIMER,120,1800#</code></pre><button class="btn copy" data-clipboard="TIMER,120,1800#">Copiar</button><div class="muted small">2 min ligado / 30 min desligado</div></div>
-            <div class="cmd-row"><pre><code>HBT,900,900#</code></pre><button class="btn copy" data-clipboard="HBT,900,900#">Copiar</button><div class="muted small">Heartbeat mínimo</div></div>
-            <div class="cmd-row"><pre><code>SENDS,20#</code></pre><button class="btn copy" data-clipboard="SENDS,20#">Copiar</button><div class="muted small">GPS ativo a cada 20 min</div></div>
-          </div>
-        </section>
-
-        <!-- MOTO -->
-        <section>
-          <div class="section-title"><h2>Moto — Economia de Bateria</h2><span class="muted">Perfis sugeridos</span></div>
-          <div class="list">
-            <div class="cmd-row"><pre><code>TIMER,60,1800#</code></pre><button class="btn copy" data-clipboard="TIMER,60,1800#">Copiar</button><div class="muted small">1 min ligado / 30 min desligado</div></div>
-            <div class="cmd-row"><pre><code>HBT,600,600#</code></pre><button class="btn copy" data-clipboard="HBT,600,600#">Copiar</button><div class="muted small">Heartbeat leve</div></div>
-            <div class="cmd-row"><pre><code>SENDS,1#</code></pre><button class="btn copy" data-clipboard="SENDS,1#">Copiar</button><div class="muted small">GPS ativo a cada 1 min</div></div>
-            <div class="cmd-row"><pre><code>SZCS#SLPDISCONNECT=1</code></pre><button class="btn copy" data-clipboard="SZCS#SLPDISCONNECT=1">Copiar</button><div class="muted small">Dormência desconecta da plataforma, SMS ativo</div></div>
-          </div>
-        </section>
-
-        <!-- MANUTENÇÃO -->
-        <section>
-          <div class="section-title"><h2>Manutenção diária</h2><span class="muted">Comandos úteis</span></div>
-          <div class="list">
-            <div class="cmd-row"><pre><code>WHERE#</code></pre><button class="btn copy" data-clipboard="WHERE#">Copiar</button><div class="muted small">Última posição (coordenadas)</div></div>
-            <div class="cmd-row"><pre><code>666#</code></pre><button class="btn copy" data-clipboard="666#">Copiar</button><div class="muted small">Link Google Maps</div></div>
-            <div class="cmd-row"><pre><code>STATUS#</code></pre><button class="btn copy" data-clipboard="STATUS#">Copiar</button><div class="muted small">Status bateria, sinal e ACC</div></div>
-            <div class="cmd-row"><pre><code>RESET#</code></pre><button class="btn copy" data-clipboard="RESET#">Copiar</button><div class="muted small">Reinicia o rastreador</div></div>
-          </div>
-        </section>
-
-        <!-- AVANÇADOS -->
-        <section>
-          <div class="section-title"><h2>Comandos Avançados</h2><span class="muted">Ajustes finos</span></div>
-          <div class="list">
-            <div class="cmd-row"><pre><code>SZCS#SLPDISCONNECT=1</code></pre><button class="btn copy" data-clipboard="SZCS#SLPDISCONNECT=1">Copiar</button><div class="muted small">Modo de hibernação: 0 mantém, 1 SMS ativo, 2 desconecta total</div></div>
-            <div class="cmd-row"><pre><code>SENALM,ON,2#</code></pre><button class="btn copy" data-clipboard="SENALM,ON,2#">Copiar</button><div class="muted small">Ativa alarme de vibração (2 = GPRS+SMS+CALL)</div></div>
-            <div class="cmd-row"><pre><code>SENALM,OFF#</code></pre><button class="btn copy" data-clipboard="SENALM,OFF#">Copiar</button><div class="muted small">Desativa sensor de vibração</div></div>
-            <div class="cmd-row"><pre><code>RESET#</code></pre><button class="btn copy" data-clipboard="RESET#">Copiar</button><div class="muted small">Reinício rápido do rastreador</div></div>
-            <div class="cmd-row"><pre><code>SENDS,10#</code></pre><button class="btn copy" data-clipboard="SENDS,10#">Copiar</button><div class="muted small">Economia de GPS: liga GPS a cada 10 min</div></div>
-            <div class="cmd-row"><pre><code>SZCS#ANTIJAMMER=1</code></pre><button class="btn copy" data-clipboard="SZCS#ANTIJAMMER=1">Copiar</button><div class="muted small">Ativa modo anti-jammer</div></div>
-            <div class="cmd-row"><pre><code>LED,OFF#</code></pre><button class="btn copy" data-clipboard="LED,OFF#">Copiar</button><div class="muted small">Apaga LEDs do rastreador</div></div>
-            <div class="cmd-row"><pre><code>LED,ON#</code></pre><button class="btn copy" data-clipboard="LED,ON#">Copiar</button><div class="muted small">Religa LEDs</div></div>
-            <div class="cmd-row"><pre><code>SZCS#ACC_MODE=1</code></pre><button class="btn copy" data-clipboard="SZCS#ACC_MODE=1">Copiar</button><div class="muted small">Habilita ignição virtual (ACC por sensor)</div></div>
-          </div>
-        </section>
-
-        <!-- EFEITO ESTRELA -->
-        <section>
-          <div class="section-title"><h2>Parar efeito estrela</h2><span class="muted">Reset servidor/APN</span></div>
-          <div class="list">
-            <div class="cmd-row"><pre><code>SERVER,0,0.0.0.0,0,0#</code></pre><button class="btn copy" data-clipboard="SERVER,0,0.0.0.0,0,0#">Copiar</button><div class="muted small">Apaga servidor antigo</div></div>
-            <div class="cmd-row"><pre><code>APN,,,#</code></pre><button class="btn copy" data-clipboard="APN,,,#">Copiar</button><div class="muted small">Apaga APN configurada</div></div>
-          </div>
-        </section>
-
-        <!-- SERVIDOR & APN -->
-        <section>
-          <div class="section-title"><h2>Servidor & APN</h2><span class="muted">Configuração inicial</span></div>
-          <div class="list">
-            <div class="cmd-row"><pre><code>SERVER,0,5.78.41.102,5023,0#</code></pre><button class="btn copy" data-clipboard="SERVER,0,5.78.41.102,5023,0#">Copiar</button><div class="muted small">Servidor Global Rastreamento</div></div>
-            <div class="cmd-row"><pre><code>APN,virtueyes.com.br,virtu,virtu#</code></pre><button class="btn copy" data-clipboard="APN,virtueyes.com.br,virtu,virtu#">Copiar</button><div class="muted small">APN Virtueyes</div></div>
-            <div class="cmd-row"><pre><code>APN,ss.br,ss,ss#</code></pre><button class="btn copy" data-clipboard="APN,ss.br,ss,ss#">Copiar</button><div class="muted small">APN SS</div></div>
-            <div class="cmd-row"><pre><code>APN,claro.com.br,claro,claro#</code></pre><button class="btn copy" data-clipboard="APN,claro.com.br,claro,claro#">Copiar</button><div class="muted small">APN Claro</div></div>
-            <div class="cmd-row"><pre><code>APN,tim.br,tim,tim#</code></pre><button class="btn copy" data-clipboard="APN,tim.br,tim,tim#">Copiar</button><div class="muted small">APN TIM</div></div>
-            <div class="cmd-row"><pre><code>APN,oi.com.br,oi,oi#</code></pre><button class="btn copy" data-clipboard="APN,oi.com.br,oi,oi#">Copiar</button><div class="muted small">APN Oi</div></div>
-            <div class="cmd-row"><pre><code>APN,vivo.com.br,vivo,vivo#</code></pre><button class="btn copy" data-clipboard="APN,vivo.com.br,vivo,vivo#">Copiar</button><div class="muted small">APN Vivo</div></div>
-          </div>
-        </section>
-
-      </main>
-
-      <aside class="right">
-        <div class="card">
-          <div class="section-title"><h2>Busca</h2><span class="muted">Filtrar comandos</span></div>
-          <div class="search"><input class="input" id="filter" placeholder="Buscar comando..."/></div>
-          <div style="height:20px"></div>
-          <div class="section-title"><h2>Dicas</h2><span class="muted">Boas práticas</span></div>
-          <ul class="muted small">
-            <li>Teste primeiro em 1 veículo antes de aplicar em frota.</li>
-            <li>Use perfis econômicos em motos para preservar bateria.</li>
-            <li>Se notar conexões duplicadas, use a seção "Efeito Estrela".</li>
-            <li>Sempre cadastre números CENTER para alertas.</li>
-          </ul>
         </div>
-      </aside>
-    </div>
-
-    <footer>
-      <div>© 2025 <strong>Global Rastreamento</strong>. Todos os direitos reservados.</div>
-      <div><a href="https://privacy.globalrastreamento.net.br/" target="_blank">Política de Privacidade</a></div>
-    </footer>
-  </div>
+      </div>
+      <div class="footer-note">Documento gerado automaticamente pelo Portal Unificado Global Tecnologia – Proibida a reprodução não autorizada.</div>
+    </section>
+  </main>
 
   <script>
-    // Copiar comandos
-    document.querySelectorAll('.btn.copy').forEach(btn=>{
-      btn.addEventListener('click',()=>{
-        const txt = btn.getAttribute('data-clipboard') || (btn.parentElement.querySelector('code') ? btn.parentElement.querySelector('code').innerText.trim() : '');
-        navigator.clipboard.writeText(txt).then(()=>{
-          const original = btn.innerText;
-          btn.innerText='Copiado';
-          setTimeout(()=>btn.innerText=original,1200);
-        }).catch(()=>{
-          // fallback rápido
-          alert('Não foi possível copiar automaticamente. Selecione e copie manualmente: ' + txt);
-        });
+    const $$ = (sel, ctx=document) => Array.from(ctx.querySelectorAll(sel));
+    const setText = (n,v) => $$("[data-text='"+n+"']").forEach(e=>e.textContent = v || "");
+    const fmtDate = iso => iso ? new Date(iso).toLocaleDateString('pt-BR') : "";
+    $$("[data-bind]").forEach(inp => {
+      inp.addEventListener("input", () => {
+        const name = inp.dataset.bind;
+        if(name === "data_doc") setText("data_doc_fmt", fmtDate(inp.value));
+        setText(name, inp.value);
       });
     });
-    // Filtro de busca (verifica existência do campo)
-    const filterInput = document.getElementById('filter');
-    if(filterInput){
-      filterInput.addEventListener('input',e=>{
-        const q = e.target.value.toLowerCase();
-        document.querySelectorAll('pre code').forEach(el=>{
-          const row = el.closest('.cmd-row') || el.parentElement.parentElement;
-          if(!row) return;
-          row.style.display = el.innerText.toLowerCase().includes(q) ? 'flex' : 'none';
-        });
-      });
-    }
+    const pdfOpts = {
+      margin: [10, 15, 10, 15],
+      filename: 'Contrato_Motocicleta_ABNT_v5.pdf',
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2, useCORS: true },
+      jsPDF: { unit: 'mm', format: 'letter', orientation: 'portrait' }
+    };
+    document.getElementById('btnPdfTop').addEventListener('click', () => {
+      const el = document.getElementById('contrato');
+      const prevShadow = el.style.boxShadow;
+      el.style.boxShadow = 'none';
+      html2pdf().set(pdfOpts).from(el).save().then(()=> el.style.boxShadow = prevShadow);
+    });
   </script>
 </body>
 </html>
