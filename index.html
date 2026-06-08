@@ -1,204 +1,355 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Contrato de Locação de Veículo – Motocicleta (ABNT v5)</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-  <style>
-    body {
-      background: #f5f5f5;
-      font-family: 'Times New Roman', Times, serif;
-      color: #111;
-    }
-    .sheet {
-      width: 100%;
-      max-width: 900px;
-      margin: 15px auto;
-      background: #fff;
-      padding: 10mm 25mm 20mm 25mm;
-      box-shadow: 0 0 10px rgba(0,0,0,.12);
-      position: relative;
-      overflow: hidden;
-      border-radius: 4px;
-    }
-    @media print {
-      body { background: #fff; }
-      .no-print { display: none !important; }
-      .sheet { box-shadow: none; margin: 0; }
-    }
-    .btn-pdf {
-      background: #ff6a00;
-      color: #fff;
-      font-weight: 600;
-      border-radius: .5rem;
-      padding: .6rem 1rem;
-      transition: .25s;
-    }
-    .btn-pdf:hover { background: #d45500; }
-    .watermark {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) rotate(-45deg);
-      font-size: 64px;
-      font-weight: 700;
-      color: rgba(0, 0, 0, .08);
-      white-space: nowrap;
-      pointer-events: none;
-      z-index: 0;
-    }
-    .footer-note {
-      position: absolute;
-      left: 0; right: 0;
-      bottom: 8mm;
-      text-align: center;
-      font-size: 10px;
-      color: #555;
-    }
-    .contrato {
-      position: relative;
-      z-index: 1;
-      font-size: 16px;
-      line-height: 1.5;
-      text-align: justify;
-    }
-    .contrato h1 {
-      text-align: center;
-      font-weight: 700;
-      font-size: 18px;
-      margin: 0 0 10px 0;
-      letter-spacing: .5px;
-    }
-    .contrato h3 {
-      font-weight: 700;
-      font-size: 16px;
-      margin: 10px 0 4px 0;
-    }
-    .contrato p { margin: 0 0 6px 0; }
-    .contrato ol { margin: 0 0 6px 18px; }
-    .assinaturas {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      margin-top: 35px;
-    }
-    .assinaturas div {
-      border-top: 1px dashed #777;
-      padding-top: 8px;
-      text-align: center;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manutenção e Custos - Global Rastreamento</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#121212;
+    color:#fff;
+    padding:20px;
+}
+
+.header{
+    margin-bottom:20px;
+}
+
+.header h1{
+    color:#ffc107;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:15px;
+    margin-bottom:25px;
+}
+
+.card{
+    background:#1f1f1f;
+    border-left:5px solid #0d6efd;
+    padding:20px;
+    border-radius:10px;
+}
+
+.card h3{
+    color:#ccc;
+    font-size:14px;
+}
+
+.card .value{
+    font-size:28px;
+    font-weight:bold;
+    color:#fff;
+    margin-top:10px;
+}
+
+.section{
+    background:#1f1f1f;
+    padding:20px;
+    border-radius:10px;
+    margin-bottom:20px;
+}
+
+.section h2{
+    color:#ffc107;
+    margin-bottom:15px;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:15px;
+}
+
+input, select, textarea{
+    width:100%;
+    padding:10px;
+    border:none;
+    border-radius:5px;
+    background:#2d2d2d;
+    color:white;
+}
+
+button{
+    background:#0d6efd;
+    color:white;
+    border:none;
+    padding:12px 20px;
+    border-radius:5px;
+    cursor:pointer;
+    margin-top:15px;
+}
+
+button:hover{
+    background:#0b5ed7;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+}
+
+table th{
+    background:#0d6efd;
+    padding:12px;
+}
+
+table td{
+    padding:12px;
+    border-bottom:1px solid #333;
+}
+
+.status{
+    padding:5px 10px;
+    border-radius:15px;
+    font-size:12px;
+}
+
+.green{
+    background:#198754;
+}
+
+.yellow{
+    background:#ffc107;
+    color:black;
+}
+
+.red{
+    background:#dc3545;
+}
+
+.progress-container{
+    background:#333;
+    border-radius:10px;
+    overflow:hidden;
+    height:25px;
+    margin-top:10px;
+}
+
+.progress{
+    height:100%;
+    width:70%;
+    background:#0d6efd;
+    text-align:center;
+    line-height:25px;
+}
+
+.footer{
+    text-align:center;
+    color:#999;
+    margin-top:30px;
+}
+</style>
 </head>
+
 <body>
-  <header class="no-print bg-gradient-to-r from-[#ff6a00] to-black text-white p-3 text-center font-bold">
-    Gerador de Contrato de Locação de Motocicleta – ABNT v5
-    <button id="btnPdfTop" class="btn-pdf ml-3 text-sm">Gerar PDF</button>
-  </header>
 
-  <main class="max-w-4xl mx-auto p-4">
-    <section class="bg-white p-4 rounded-lg shadow-md mb-5 no-print">
-      <h2 class="text-lg font-bold mb-2">Preencha os dados</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <label>Locador <input data-bind="locador_nome" class="mt-1 w-full border rounded-lg px-3 py-2" /></label>
-        <label>CNPJ/CPF <input data-bind="locador_doc" class="mt-1 w-full border rounded-lg px-3 py-2" /></label>
-        <label class="md:col-span-2">Endereço <input data-bind="locador_end" class="mt-1 w-full border rounded-lg px-3 py-2" /></label>
-        <label class="md:col-span-2">Representante <input data-bind="locador_rep" class="mt-1 w-full border rounded-lg px-3 py-2" /></label>
+<div class="header">
+    <h1>🔧 Manutenção e Custos da Frota</h1>
+    <p>Controle Preventivo e Financeiro</p>
+</div>
 
-        <label class="md:col-span-2 mt-2">Locatário <input data-bind="locatario_nome" class="mt-1 w-full border rounded-lg px-3 py-2" /></label>
-        <label>CPF <input data-bind="locatario_cpf" class="mt-1 w-full border rounded-lg px-3 py-2" /></label>
-        <label>RG <input data-bind="locatario_rg" class="mt-1 w-full border rounded-lg px-3 py-2" /></label>
-        <label>CNH <input data-bind="locatario_cnh" class="mt-1 w-full border rounded-lg px-3 py-2" /></label>
-        <label class="md:col-span-2">Endereço <input data-bind="locatario_end" class="mt-1 w-full border rounded-lg px-3 py-2" /></label>
+<div class="cards">
 
-        <label class="mt-2">Marca <input data-bind="moto_marca" class="mt-1 w-full border rounded-lg px-3 py-2" /></label>
-        <label class="mt-2">Modelo <input data-bind="moto_modelo" class="mt-1 w-full border rounded-lg px-3 py-2" /></label>
-        <label class="mt-2">Placa <input data-bind="moto_placa" class="mt-1 w-full border rounded-lg px-3 py-2" /></label>
-        <label class="mt-2">Cor <input data-bind="moto_cor" class="mt-1 w-full border rounded-lg px-3 py-2" /></label>
-        <label class="mt-2">Ano <input data-bind="moto_ano" class="mt-1 w-full border rounded-lg px-3 py-2" /></label>
-        <label class="mt-2">RENAVAM <input data-bind="moto_renavam" class="mt-1 w-full border rounded-lg px-3 py-2" /></label>
+    <div class="card">
+        <h3>Gasto no Mês</h3>
+        <div class="value">R$ 3.250</div>
+    </div>
 
-        <label class="mt-2">Duração (dias) <input data-bind="duracao" class="mt-1 w-full border rounded-lg px-3 py-2" /></label>
-        <label class="mt-2">Valor do aluguel <input data-bind="valor" class="mt-1 w-full border rounded-lg px-3 py-2" /></label>
-        <label class="mt-2">Caução <input data-bind="caucao" class="mt-1 w-full border rounded-lg px-3 py-2" /></label>
-        <label class="mt-2">Limite de km <input data-bind="km_limite" class="mt-1 w-full border rounded-lg px-3 py-2" /></label>
-        <label class="mt-2">Revisão a cada <input data-bind="km_revisao" class="mt-1 w-full border rounded-lg px-3 py-2" /></label>
-        <label class="mt-2">Multa por atraso <input data-bind="multa_atraso" class="mt-1 w-full border rounded-lg px-3 py-2" /></label>
-        <label class="mt-2">Cidade/UF <input data-bind="cidade" class="mt-1 w-full border rounded-lg px-3 py-2" /></label>
-        <label class="mt-2">Data do contrato <input type="date" data-bind="data_doc" class="mt-1 w-full border rounded-lg px-3 py-2" /></label>
-      </div>
-    </section>
+    <div class="card">
+        <h3>Gasto no Ano</h3>
+        <div class="value">R$ 28.900</div>
+    </div>
 
-    <section id="contrato" class="sheet">
-      <div class="watermark">USO EXCLUSIVO – LICENCIADO</div>
-      <div class="contrato">
-        <h1>CONTRATO DE LOCAÇÃO DE VEÍCULO – MOTOCICLETA</h1>
-        <p><strong>LOCADOR(A):</strong> <span data-text="locador_nome"></span>, CNPJ/CPF <span data-text="locador_doc"></span>, representado por <span data-text="locador_rep"></span>.</p>
-        <p><strong>LOCATÁRIO(A):</strong> <span data-text="locatario_nome"></span>, CPF <span data-text="locatario_cpf"></span>, RG <span data-text="locatario_rg"></span>, CNH nº <span data-text="locatario_cnh"></span>, residente em <span data-text="locatario_end"></span>.</p>
-        <h3>CLÁUSULA 1 – DO OBJETO</h3>
-        <p>Locação da motocicleta <span data-text="moto_marca"></span> <span data-text="moto_modelo"></span>, placa <span data-text="moto_placa"></span>, cor <span data-text="moto_cor"></span>, ano <span data-text="moto_ano"></span>, RENAVAM <span data-text="moto_renavam"></span>.</p>
-        <h3>CLÁUSULA 2 – DO PRAZO E VALOR</h3>
-        <p>Duração de <span data-text="duracao"></span> dias. Valor: <span data-text="valor"></span>. Caução: <span data-text="caucao"></span>.</p>
-        <h3>CLÁUSULA 3 – DAS OBRIGAÇÕES DO LOCATÁRIO</h3>
-        <ol>
-          <li>Manter o veículo abastecido e em bom estado de conservação.</li>
-          <li>Arcar com todas as multas e infrações de trânsito cometidas durante a locação.</li>
-          <li>Evitar atrasos nos pagamentos e comunicar o locador sobre qualquer imprevisto.</li>
-          <li>Responsabilizar-se por todos os danos causados ao veículo decorrentes de mau uso.</li>
-          <li>Comunicar imediatamente o locador sobre quaisquer defeitos ou incidentes.</li>
-          <li>Apresentar CNH válida e compatível com a categoria do veículo.</li>
-        </ol>
-        <h3>CLÁUSULA 4 – DA MANUTENÇÃO E REVISÃO</h3>
-        <p>As revisões preventivas são de responsabilidade do locador. Danos por mau uso ou negligência são de responsabilidade do locatário. Revisões obrigatórias a cada <span data-text="km_revisao"></span> km.</p>
-        <h3>CLÁUSULA 5 – DA DEVOLUÇÃO</h3>
-        <p>O veículo deverá ser devolvido em <strong>Paulo Afonso/BA</strong> ou local acordado, nas mesmas condições de entrega e com o mesmo nível de combustível. O atraso implicará multa de <span data-text="multa_atraso"></span> por dia.</p>
-        <h3>CLÁUSULA 6 – DO RASTREAMENTO</h3>
-        <p>O locatário autoriza o uso do rastreador somente para fins de segurança e localização, conforme Lei nº 14.967/2024.</p>
-        <h3>CLÁUSULA 7 – DAS PENALIDADES E RESCISÃO</h3>
-        <p>O descumprimento de qualquer cláusula implicará rescisão imediata deste contrato e cobrança das penalidades cabíveis.</p>
-        <h3>CLÁUSULA 8 – DO FORO</h3>
-        <p>Fica eleito o foro da comarca de <strong>Paulo Afonso/BA</strong> para dirimir quaisquer controvérsias decorrentes deste contrato.</p>
-        <p style="margin-top:10px;"><span data-text="cidade"></span>, <span data-text="data_doc_fmt"></span>.</p>
-        <div class="assinaturas">
-          <div>
-            <div>ASSINATURA DO LOCADOR(A)</div>
-            <small><span data-text="locador_nome"></span></small>
-          </div>
-          <div>
-            <div>ASSINATURA DO LOCATÁRIO(A)</div>
-            <small><span data-text="locatario_nome"></span></small>
-          </div>
+    <div class="card">
+        <h3>Manutenções Pendentes</h3>
+        <div class="value">4</div>
+    </div>
+
+    <div class="card">
+        <h3>Custo por KM</h3>
+        <div class="value">R$ 0,15</div>
+    </div>
+
+</div>
+
+<div class="section">
+    <h2>➕ Registrar Manutenção</h2>
+
+    <div class="form-grid">
+
+        <div>
+            <label>Veículo</label>
+            <input type="text" placeholder="Placa ou nome">
         </div>
-      </div>
-      <div class="footer-note">Documento gerado automaticamente pelo Portal Unificado Global Tecnologia – Proibida a reprodução não autorizada.</div>
-    </section>
-  </main>
 
-  <script>
-    const $$ = (sel, ctx=document) => Array.from(ctx.querySelectorAll(sel));
-    const setText = (n,v) => $$("[data-text='"+n+"']").forEach(e=>e.textContent = v || "");
-    const fmtDate = iso => iso ? new Date(iso).toLocaleDateString('pt-BR') : "";
-    $$("[data-bind]").forEach(inp => {
-      inp.addEventListener("input", () => {
-        const name = inp.dataset.bind;
-        if(name === "data_doc") setText("data_doc_fmt", fmtDate(inp.value));
-        setText(name, inp.value);
-      });
-    });
-    const pdfOpts = {
-      margin: [10, 15, 10, 15],
-      filename: 'Contrato_Motocicleta_ABNT_v5.pdf',
-      image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: { scale: 2, useCORS: true },
-      jsPDF: { unit: 'mm', format: 'letter', orientation: 'portrait' }
-    };
-    document.getElementById('btnPdfTop').addEventListener('click', () => {
-      const el = document.getElementById('contrato');
-      const prevShadow = el.style.boxShadow;
-      el.style.boxShadow = 'none';
-      html2pdf().set(pdfOpts).from(el).save().then(()=> el.style.boxShadow = prevShadow);
-    });
-  </script>
+        <div>
+            <label>Data</label>
+            <input type="date">
+        </div>
+
+        <div>
+            <label>Hodômetro</label>
+            <input type="number" placeholder="KM Atual">
+        </div>
+
+        <div>
+            <label>Serviço</label>
+            <select>
+                <option>Troca de Óleo</option>
+                <option>Filtro</option>
+                <option>Freios</option>
+                <option>Revisão</option>
+            </select>
+        </div>
+
+        <div>
+            <label>Oficina</label>
+            <input type="text">
+        </div>
+
+        <div>
+            <label>Valor das Peças</label>
+            <input type="number">
+        </div>
+
+        <div>
+            <label>Mão de Obra</label>
+            <input type="number">
+        </div>
+
+        <div>
+            <label>Outros Custos</label>
+            <input type="number">
+        </div>
+
+    </div>
+
+    <label>Observações</label>
+    <textarea rows="4"></textarea>
+
+    <button>Salvar Manutenção</button>
+
+</div>
+
+<div class="section">
+
+    <h2>📊 Próximas Manutenções</h2>
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>Serviço</th>
+                <th>Última KM</th>
+                <th>Próxima KM</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr>
+                <td>Troca de Óleo</td>
+                <td>50.000</td>
+                <td>60.000</td>
+                <td><span class="status green">Em Dia</span></td>
+            </tr>
+
+            <tr>
+                <td>Filtro de Ar</td>
+                <td>40.000</td>
+                <td>50.000</td>
+                <td><span class="status yellow">Atenção</span></td>
+            </tr>
+
+            <tr>
+                <td>Correia</td>
+                <td>90.000</td>
+                <td>100.000</td>
+                <td><span class="status red">Vencida</span></td>
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+<div class="section">
+
+    <h2>📈 Progresso da Próxima Troca de Óleo</h2>
+
+    <p>Faltam 3.000 km para a próxima manutenção</p>
+
+    <div class="progress-container">
+        <div class="progress">70%</div>
+    </div>
+
+</div>
+
+<div class="section">
+
+    <h2>💰 Histórico Financeiro</h2>
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>Data</th>
+                <th>Veículo</th>
+                <th>Serviço</th>
+                <th>KM</th>
+                <th>Valor</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr>
+                <td>01/08/2026</td>
+                <td>Fiat Strada</td>
+                <td>Troca de Óleo</td>
+                <td>50.000</td>
+                <td>R$ 250,00</td>
+            </tr>
+
+            <tr>
+                <td>10/08/2026</td>
+                <td>Fiat Strada</td>
+                <td>Freios</td>
+                <td>55.000</td>
+                <td>R$ 600,00</td>
+            </tr>
+
+            <tr>
+                <td>15/08/2026</td>
+                <td>Hilux</td>
+                <td>Revisão</td>
+                <td>80.000</td>
+                <td>R$ 1.200,00</td>
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+<div class="footer">
+    Global Rastreamento - Gestão Inteligente de Frotas
+</div>
+
 </body>
 </html>
